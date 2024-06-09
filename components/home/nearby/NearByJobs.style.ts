@@ -1,0 +1,26 @@
+import { FONT, SIZES } from "@/constants";
+import { StyleSheet } from "react-native";
+
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+        marginTop: SIZES.large
+    },
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    headerTitle: {
+        fontSize: SIZES.large,
+        fontFamily: FONT.bold
+    },
+    headerBtn: {
+        fontSize: SIZES.medium,
+        fontFamily: FONT.medium
+    },
+    cardsContainter: {
+        marginTop: SIZES.medium
+    }
+})
+export default styles
