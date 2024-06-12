@@ -13,12 +13,13 @@ interface ItemInterface{
     job_country: string
 }
 interface PropsInterface {
-    jobItem: ItemInterface
+    jobItem: ItemInterface,
+    handleNavigate: Function
 }
-const NearByJobCard : React.FC<PropsInterface>  = ({jobItem}) => {
+const NearByJobCard : React.FC<PropsInterface>  = ({jobItem, handleNavigate}) => {
     // console.log(jobItem.job_title)
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() =>handleNavigate()}>
             <View style={styles.logoContainer}>
                 <Image source={{uri: jobItem?.employer_logo}} style={styles.img}/>
             </View>

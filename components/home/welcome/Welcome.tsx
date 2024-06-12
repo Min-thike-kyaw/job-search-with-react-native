@@ -4,7 +4,12 @@ import style from "./Welcome.style";
 import { useState } from "react";
 
 const jobTypes = ['Full-time', 'Part-time', 'Contractor']
-export default function Welcome () {
+interface PropsInterface {
+    searchTerm: string,
+    setSearchTerm: Function,
+    handleClick: Function
+}
+const Welcome : React.FC<PropsInterface> =  ({searchTerm, setSearchTerm, handleClick}) =>  {
     const [activeJobType, setActiveJobType] = useState("Full-time");
     return (
         <View style={style.container}>
@@ -15,9 +20,9 @@ export default function Welcome () {
 
             <View style={style.searchContainer}>
                 <View style={style.searchWrapper}>
-                    <TextInput style={style.searchInput} placeholder="What Are you looking for!"/>
+                    <TextInput value={searchTerm} onChangeText={(text) => setSearchTerm(text)} style={style.searchInput} placeholder="What Are you looking for!"/>
                 </View>
-                <TouchableOpacity style={style.searchBtn}>
+                <TouchableOpacity style={style.searchBtn} onPress={() => handleClick()}>
                     <Image source={icons.search} style={style.searchBtnImage} resizeMode="contain"/>
                 </TouchableOpacity>
             </View>
@@ -41,3 +46,5 @@ export default function Welcome () {
         </View>
     )
 }
+
+export default Welcome

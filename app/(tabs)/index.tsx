@@ -1,12 +1,15 @@
 import { Image, StyleSheet, Platform, View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS, icons, images, SIZES } from "../../constants";
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import ScreenHeaderBtn from '@/components/common/ScreenHeaderBtn';
 import Welcome from '@/components/home/welcome/Welcome';
 import PopularJobs from '@/components/home/popular/PopularJobs';
 import NearByJobs from '@/components/home/nearby/NearByJobs';
+import { useState } from 'react';
 export default function HomeScreen() {
+  const router = useRouter()
+  const [searchTerm, setSearchTerm] = useState('')
   return (
     <SafeAreaView style={{flex: 1, backgroundColor : COLORS.lightWhite}}>
         <Stack.Screen 
@@ -29,7 +32,11 @@ export default function HomeScreen() {
               paddingHorizontal: SIZES.medium,
             }}
           >
-            <Welcome />
+            <Welcome 
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              handleClick={() => router.push(`search/${searchTerm}`)}
+            />
             <PopularJobs />
             <NearByJobs />
           </View>

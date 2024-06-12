@@ -5,7 +5,8 @@ import { ImageSourcePropType } from "react-native"
 interface FunctionReturn {
     data: any,
     error: any,
-    isLoading: boolean
+    isLoading: boolean,
+    refetch: Function
 }
 const useFetch = (endpoint : string, query : object = {} ) : FunctionReturn => {
     const [isLoading, setIsLoading] = useState(false)
@@ -32,10 +33,14 @@ const useFetch = (endpoint : string, query : object = {} ) : FunctionReturn => {
             setIsLoading(false)
         }
     }
+
+    const refetch = ()=> {
+        fetchData()
+    }
     useEffect(() => {
         fetchData();
       }, []);
 
-    return {error, data, isLoading}
+    return {error, data, isLoading, refetch}
 }
 export default useFetch
